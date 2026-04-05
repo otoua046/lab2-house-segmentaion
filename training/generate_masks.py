@@ -13,6 +13,7 @@ from datasets import DatasetDict, load_dataset
 from PIL import Image, ImageDraw
 
 DATASET_NAME = "keremberke/satellite-building-segmentation"
+DATASET_CONFIG = "full"
 EXPECTED_SPLITS = ("train", "valid", "test")
 SPLIT_ALIASES = {"valid": ("valid", "validation")}
 FOREGROUND_VALUE = 255
@@ -145,7 +146,8 @@ def generate_masks(
     images_dir, masks_dir = ensure_output_dirs(output_dir)
 
     logging.info("Loading dataset: %s", DATASET_NAME)
-    dataset = load_dataset(DATASET_NAME)
+    logging.info("Loading dataset: %s (config=%s)", DATASET_NAME, DATASET_CONFIG)
+    dataset = load_dataset(DATASET_NAME, name=DATASET_CONFIG)
 
     total_available = 0
     split_order: list[tuple[str, str]] = []
