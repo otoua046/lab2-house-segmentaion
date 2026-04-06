@@ -1,1 +1,3 @@
 # Ignore generated artifacts.
+.env
+.env.*
